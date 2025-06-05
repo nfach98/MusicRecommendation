@@ -121,19 +121,19 @@ Untuk efisiensi komputasi tidak seluruh data akan digunakan lebih lanjut dalam p
 
 Di dalam dataset track yang sudah disaring terdapat 102 genre dengan jumlah lagu pada tiap genre yang bervariasi. Analisis wordcloud berikut menunjukkan genre mana saja yang dominan.
 
-![Grafik wordcloud genre](images/graph_cloud_genre.png)
+![Grafik wordcloud genre](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_cloud_genre.png)
 
 Dapat dilihat dari wordcloud bahwa genre seperti k-pop, hip-hop, alt-rock, pop-film dan chill dominan. Untuk mengetahui detail jumlah lagu tiap genre dapat dilihat dari grafik dari 10 genre dengan jumlah lagu terbanyak di bawah ini.
 
-![Grafik wordcloud genre](images/graph_bar_genre.png)
+![Grafik wordcloud genre](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_bar_genre.png)
 
 Grafik ini menunjukkan genre k-pop memiliki lagu terbanyak, disusul pop-film dan hip-hop, yang mana sekitar 10% dari dataset track merupakan tiga genre teratas ini. Genre pop dan hip-hop merupakan dua genre teratas di tahun 2024, sedangkan k-pop menunjukkan pertumbuhan sebagai salah satu genre non-bahasa Inggris [*5*].
 
 Namun hasil berbeda ditunjukkan jika menghitung genre yang paling lama didengarkan berdasarkan dataset user yang juga telah disaring. Dalam dataset user ini, pengguna mendengarkan genre british lebih lama dari genre lain. Di bawahnya terdapat genre singer-songwriter, alt-rock, garage dan blues dengan selisih yang jauh dari genre british. Detail 10 genre yang paling lama didengarkan dapat dilihat pada grafik di bawah ini.
-![Grafik genre user](images/graph_bar_user_genre.png)
+![Grafik genre user](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_bar_user_genre.png)
 
 Untuk mengetahui distribusi data bisa dilakukan analisis melalui grafik histogram. Berikut adalah grafik histogram dari dataset track.
-![Grafik histogram track](images/graph_hist_track.png)
+![Grafik histogram track](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_hist_track.png)
 
 Analisis histogram dari dataset track menunjukkan beberapa poin berikut:
 
@@ -214,7 +214,7 @@ Dataset user dibagi menjadi data training dan validation dengan proporsi 80:20.
 ### Cosine Similarity
 
 Teknik ini biasa digunakan dalam sistem *content-based filtering* yang bekerja dengan menghitung kesamaan antar item. Item akan direpresentasikan sebagai vektor, lalu untuk setiap pasang vektor akan dihitung kemiripan arah dan sudutnya. Berikut adalah rumus cosine similarity.
-![Cosine similarity](images/cosine_sim.png)
+![Cosine similarity](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/cosine_sim.png)
 
 Kelebihan teknik ini adalah efektif untuk data jarang serta efisien secara sumber daya. Namun kekurangannya hanya memberikan item yang mirip tanpa mempertimbangkan seberapa pengguna menyukai item tersebut [*7*].
 
@@ -239,10 +239,10 @@ Model akan memberikan daftar rekomendasi berikut.
 ### Dot Product
 
 Dot product adalah suatu operasi untuk mengalikan dua vektor sehingga menghasilkan nilai skalar [*8*]. Berbeda dengan cosine similarity, teknik ini tidak hanya mempertimbangkan arah dan kemiringan vektor tetapi juga panjangnya. Sehingga teknik ini cocok dipakai untuk mengukur prefensi pengguna. Oleh karena itu sering digunakan pada sistem *collaborative filtering*. Berikut adalah rumus dot product.
-![Dot product](images/dot_product.png)
+![Dot product](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/dot_product.png)
 
 Dalam proyek ini akan digunakan model neural network untuk memproses dataset user yang sudah melalui proses encoding. Data ini akan diubah menjadi vektor menggunakan layer embedding. Lalu dilakukan penghitungan dot product dari tiap data pengguna dan lagu ini. Hasil dot product ditambah dengan bias, lalu diproses dengan fungsi aktivasi sigmoid untuk menentukan kesamaan preferensi antara satu user dengan user lainnya. Model dilatih dengan 10 epoch. Berikut diagram proses training model setiap epochnya.
-![Collaborative training](images/collaborative_training.png)
+![Collaborative training](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/collaborative_training.png)
 
 Setelah model terbentuk, model dicoba untuk memberikan rekomendasi berdasarkan pengguna dengan ID U00007. Pengguna ini paling lama mendengarkan 5 lagu berikut.
 
