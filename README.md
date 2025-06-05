@@ -286,12 +286,12 @@ Sedangkan RMSE bekerja dengan menghitung selisih kuadrat setiap data, lalu mengh
 
 ## Referensi
 
-[1] Morley, I. (2013). [*The Prehistory of Music: Human Evolution, Archaeology, and the Origins of Musicality*](https://academic.oup.com/book/9285). Oxford: Oxford University Press.
-[2] Welch et al. (2020). [*Editorial: The Impact of Music on Human Development and Well-Being*](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.01246/full). Frontiers in Psychology. 11.
-[3] Spotify. (2022). [*About Spotify*](https://newsroom.spotify.com/company-info/#:~:text=Today%2C%20more%20listeners%20than%20ever,a%20la%20carte%20on%20Spotify.). Diakses 19 Mei 2025.
-[4] Samson, J. (2001). [*Genre*](https://www.oxfordmusiconline.com/grovemusic/display/10.1093/gmo/9781561592630.001.0001/omo-9781561592630-e-0000040599). Grove Music Online.
-[5] Charmetric. (2024). [*Chartmetric Year in Music 2024*](https://reports.chartmetric.com/2024/chartmetric-year-in-music-2024). Diakses 21 Mei 2025.
-[6] Symphony Nova Scotia. (2025). [*How do musicians know how fast to play a piece? And why are the terms in Italian?*](https://symphonynovascotia.ca/faqs/symphony-101/how-do-musicians-know-how-fast-to-play-a-piece-and-why-are-the-terms-in-italian/). Diakses 21 Mei 2025.
-[7] Noori et al. (2024). [*Matrix Factorization and Cosine Similarity Based Recommendation System For Cold Start Problem in E-Commerce Industries*](https://iiict.uob.edu.bh/IJCDS/papers/IJCDS150156_1570934223.pdf). International Journal of Computing and Digital Systems. 1, 775-787.
-[8] Subasi et al. (2022). [*Chapter 7 - Deep learning approaches for the cardiovascular disease diagnosis using smartphone*](https://www.sciencedirect.com/science/article/abs/pii/B9780323905480000103). 5G IoT and Edge Computing for Smart Healthcare. 163-193.
-[9] Hodson, O. T. (2022). [*Root-mean-square error (RMSE) or mean absolute error (MAE): when to use them or not*](https://gmd.copernicus.org/articles/15/5481/2022/). Geoscientific Model Development. 15, 5481–5487.
+1. Morley, I. (2013). [*The Prehistory of Music: Human Evolution, Archaeology, and the Origins of Musicality*](https://academic.oup.com/book/9285). Oxford: Oxford University Press.
+2. Welch et al. (2020). [*Editorial: The Impact of Music on Human Development and Well-Being*](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.01246/full). Frontiers in Psychology. 11.
+3. Spotify. (2022). [*About Spotify*](https://newsroom.spotify.com/company-info/#:~:text=Today%2C%20more%20listeners%20than%20ever,a%20la%20carte%20on%20Spotify.). Diakses 19 Mei 2025.
+4. Samson, J. (2001). [*Genre*](https://www.oxfordmusiconline.com/grovemusic/display/10.1093/gmo/9781561592630.001.0001/omo-9781561592630-e-0000040599). Grove Music Online.
+5. Charmetric. (2024). [*Chartmetric Year in Music 2024*](https://reports.chartmetric.com/2024/chartmetric-year-in-music-2024). Diakses 21 Mei 2025.
+6. Symphony Nova Scotia. (2025). [*How do musicians know how fast to play a piece? And why are the terms in Italian?*](https://symphonynovascotia.ca/faqs/symphony-101/how-do-musicians-know-how-fast-to-play-a-piece-and-why-are-the-terms-in-italian/). Diakses 21 Mei 2025.
+7. Noori et al. (2024). [*Matrix Factorization and Cosine Similarity Based Recommendation System For Cold Start Problem in E-Commerce Industries*](https://iiict.uob.edu.bh/IJCDS/papers/IJCDS150156_1570934223.pdf). International Journal of Computing and Digital Systems. 1, 775-787.
+8. Subasi et al. (2022). [*Chapter 7 - Deep learning approaches for the cardiovascular disease diagnosis using smartphone*](https://www.sciencedirect.com/science/article/abs/pii/B9780323905480000103). 5G IoT and Edge Computing for Smart Healthcare. 163-193.
+9. Hodson, O. T. (2022). [*Root-mean-square error (RMSE) or mean absolute error (MAE): when to use them or not*](https://gmd.copernicus.org/articles/15/5481/2022/). Geoscientific Model Development. 15, 5481–5487.
