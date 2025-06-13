@@ -1,6 +1,6 @@
 # Laporan Proyek Machine Learning - Nino Fachrurozy
 
-## Domain Proyek
+## Project Overview
 
 Sejak dahulu kala hingga kini, musik telah menjadi bagian yang tak terpisahkan dari peradaban manusia. Diyakini bukti tertua instrumen musik Divje Babe yang berbentuk suling tulang berumur sekitar 40.000 tahun yang lalu. Musik juga penting dalam perabadan awal manusia, seperti untuk pendekatan sosial, ritual, bahkan kelangsungan hidup [*1*].
 
@@ -195,11 +195,17 @@ Dibentuk sesuai kategori tempo dalam musik [*6*] sebagai berikut:
 - 140-177 BPM: presto
 - Lebih dari 177 BPM: prestissimo
 
+#### ID Pengguna
+
 Sedangkan pada dataset user karena tidak ada penanda ID untuk pengguna maka akan dibuat kolom bernama 'user_id'. Proses ini dilakukan dengan mengatur 180 nomor acak pada setiap baris, lalu nomor ini diubah menjadi string dengan format 'U00' dan diikuti nomor acak tersebut. Sehingga dataset user terbagi ke dalam 180 pengguna berbeda.
 
 ### Encoding
 
 Proses ini hanya dilakukan pada dataset user dengan mengubah ID user dan ID lagu ke dalam urutan angka dari 1 hingga jumlah ID yang ada, misal ID user akan diubah menjadi angka 1 hingga 180.
+
+### Data Merging
+
+Dalam dataset user, masih terdapat data dengan ID lagu dan ID pengguna yang sama namun berbeda baris. Data-data ini digabungkan agar mendapat akumulasi durasi mendengarkan dari lagu dan pengguna yang sama.
 
 ### Scaling
 
@@ -209,7 +215,7 @@ Proses ini juga hanya dilakukan pada dataset user, dengan mengubah semua nilai '
 
 Dataset user dibagi menjadi data training dan validation dengan proporsi 80:20.
 
-## Modeling
+## Modeling and Result
 
 ### Cosine Similarity
 
