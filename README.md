@@ -31,7 +31,7 @@ Adanya data-data tentang musik ini memungkinkan adanya sistem rekomendasi yang m
 
 Proyek ini menggunakan dua dataset, yaitu daftar [lagu](https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset) dan [riwayat lagu yang didengar](https://www.kaggle.com/datasets/sgoutami/spotify-streaming-history). Keduanya didapat dari situs [Kaggle](https://www.kaggle.com).
 
-Untuk selanjutnya dataset lagu ini akan disebut sebagai dataset **track**. Dataset ini berisi 114.000 baris data dengan 19 kolom seperti di bawah ini.
+Untuk selanjutnya dataset lagu ini akan disebut sebagai dataset **track**. Dataset ini berisi 114.000 baris data dengan 20 kolom seperti di bawah ini.
 
 | Kolom | Penjelasan | Tipe Data |
 |:------:|:--------------:|:-------:|
@@ -56,7 +56,7 @@ Untuk selanjutnya dataset lagu ini akan disebut sebagai dataset **track**. Datas
 | time_signature | Tanda birama lagu | int64 |
 | track_genre | Genre lagu | object |
 
-Sedangkan dataset riwayat lagu yang didengarkan pengguna berisi 149.860 baris data dengan 10 kolom di bawah ini. Dataset ini akan disebut sebagai dataset **user**.
+Sedangkan dataset riwayat lagu yang didengarkan pengguna berisi 149.860 baris data dengan 11 kolom di bawah ini. Dataset ini akan disebut sebagai dataset **user**.
 
 | Kolom | Penjelasan | Tipe Data |
 |:------:|:--------------:|:-------:|
@@ -68,8 +68,37 @@ Sedangkan dataset riwayat lagu yang didengarkan pengguna berisi 149.860 baris da
 | platform | Platfrom yang digunakan untuk mendengarkan lagu | object |
 | ms_played | Durasi putar lagu dalam *milisecond* | int64 |
 | reason_start | Alasan mulai memutar lagu | object |
+| reason_end | Alasan berhenti memutar lagu | object |
 | shuffle | Penanda apakah lagu diputar dalam mode acak | bool |
 | skipped | Penanda apakah lagu dilewati (*skip*) oleh pengguna | bool |
+
+### Exploratory Data Analysis
+
+Di dalam dataset track yang sudah disaring terdapat 102 genre dengan jumlah lagu pada tiap genre yang bervariasi. Analisis wordcloud berikut menunjukkan genre mana saja yang dominan.
+
+![Grafik wordcloud genre](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_cloud_genre.png)
+
+Dapat dilihat dari wordcloud bahwa genre seperti k-pop, hip-hop, alt-rock, pop-film dan chill dominan. Untuk mengetahui detail jumlah lagu tiap genre dapat dilihat dari grafik dari 10 genre dengan jumlah lagu terbanyak di bawah ini.
+
+![Grafik wordcloud genre](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_bar_genre.png)
+
+Grafik ini menunjukkan genre k-pop memiliki lagu terbanyak, disusul pop-film dan hip-hop, yang mana sekitar 10% dari dataset track merupakan tiga genre teratas ini. Genre pop dan hip-hop merupakan dua genre teratas di tahun 2024, sedangkan k-pop menunjukkan pertumbuhan sebagai salah satu genre non-bahasa Inggris [*5*].
+
+Namun hasil berbeda ditunjukkan jika menghitung genre yang paling lama didengarkan berdasarkan dataset user yang juga telah disaring. Dalam dataset user ini, pengguna mendengarkan genre british lebih lama dari genre lain. Di bawahnya terdapat genre singer-songwriter, alt-rock, garage dan blues dengan selisih yang jauh dari genre british. Detail 10 genre yang paling lama didengarkan dapat dilihat pada grafik di bawah ini.
+![Grafik genre user](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_bar_user_genre.png)
+
+Untuk mengetahui distribusi data bisa dilakukan analisis melalui grafik histogram. Berikut adalah grafik histogram dari dataset track.
+![Grafik histogram track](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_hist_track.png)
+
+Analisis histogram dari dataset track menunjukkan beberapa poin berikut:
+
+- Semakin tinggi popularitas, semakin sedikit jumlah lagu
+- Dataset didominasi oleh lagu penuh nyanyian (speechiness rendah), bukan instrumental (instrumental rendah), bukan lagu akustik (acousticness rendah), serta tidak ditampilkan secara *live* (liveness rendah)
+- Hampir seluruh lagu memiliki tanda birama 4/4 yang umum digunakan pada lagu pop. Hal ini bisa terjadi karena dataset track telah disaring menjadi hanya lagu-lagu populer
+- Distribusi key hampir merata, dengan pengecualian nada dasar D# yang lebih kecil dari nada dasar lain
+- Durasi lagu, valence, danceability, dinamika, serta tempo terdistribusi normal
+
+## Data Preparation
 
 ### Missing Value
 
@@ -115,35 +144,11 @@ Hasilnya terdapat 45.132 baris yang memiliki data-data yang sama pada kolom di a
 
 Solusi untuk banyak duplikasi ini adalah dengan melakukan drop pada baris yang terduplikasi di seluruh kolom pada kedua dataset. Hasilnya tersisa 113.549 baris pada dataset track dan 148.463 baris pada dataset user. Setelah itu dilakukan drop lagi pada baris dengan elemen-elemen lagu yang sama pada dataset track seperti pada pemeriksaan kedua yang menyisakan 83.908 baris.
 
-### Exploratory Data Analysis
+### Data Filtering
 
-Untuk efisiensi komputasi tidak seluruh data akan digunakan lebih lanjut dalam proyek ini. Dalam dataset track hanya menggunakan lagu dengan nilai popularitas minimal 60, yang menyisakan 9.488 baris. Untuk dataset user hanya akan menggunakan lagu yang terdapat dalam dataset lagu yang sudah disaring popularitasnya. Proses ini menyisakan 22.413 baris pada dataset user. Setelah itu dilakukan analisis terhadap data-data ini.
+Untuk efisiensi komputasi tidak seluruh data akan digunakan lebih lanjut dalam proyek ini. Dalam dataset track hanya menggunakan lagu dengan nilai popularitas minimal 60, yang menyisakan 9.488 baris.
 
-Di dalam dataset track yang sudah disaring terdapat 102 genre dengan jumlah lagu pada tiap genre yang bervariasi. Analisis wordcloud berikut menunjukkan genre mana saja yang dominan.
-
-![Grafik wordcloud genre](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_cloud_genre.png)
-
-Dapat dilihat dari wordcloud bahwa genre seperti k-pop, hip-hop, alt-rock, pop-film dan chill dominan. Untuk mengetahui detail jumlah lagu tiap genre dapat dilihat dari grafik dari 10 genre dengan jumlah lagu terbanyak di bawah ini.
-
-![Grafik wordcloud genre](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_bar_genre.png)
-
-Grafik ini menunjukkan genre k-pop memiliki lagu terbanyak, disusul pop-film dan hip-hop, yang mana sekitar 10% dari dataset track merupakan tiga genre teratas ini. Genre pop dan hip-hop merupakan dua genre teratas di tahun 2024, sedangkan k-pop menunjukkan pertumbuhan sebagai salah satu genre non-bahasa Inggris [*5*].
-
-Namun hasil berbeda ditunjukkan jika menghitung genre yang paling lama didengarkan berdasarkan dataset user yang juga telah disaring. Dalam dataset user ini, pengguna mendengarkan genre british lebih lama dari genre lain. Di bawahnya terdapat genre singer-songwriter, alt-rock, garage dan blues dengan selisih yang jauh dari genre british. Detail 10 genre yang paling lama didengarkan dapat dilihat pada grafik di bawah ini.
-![Grafik genre user](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_bar_user_genre.png)
-
-Untuk mengetahui distribusi data bisa dilakukan analisis melalui grafik histogram. Berikut adalah grafik histogram dari dataset track.
-![Grafik histogram track](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/graph_hist_track.png)
-
-Analisis histogram dari dataset track menunjukkan beberapa poin berikut:
-
-- Semakin tinggi popularitas, semakin sedikit jumlah lagu
-- Dataset didominasi oleh lagu penuh nyanyian (speechiness rendah), bukan instrumental (instrumental rendah), bukan lagu akustik (acousticness rendah), serta tidak ditampilkan secara *live* (liveness rendah)
-- Hampir seluruh lagu memiliki tanda birama 4/4 yang umum digunakan pada lagu pop. Hal ini bisa terjadi karena dataset track telah disaring menjadi hanya lagu-lagu populer
-- Distribusi key hampir merata, dengan pengecualian nada dasar D# yang lebih kecil dari nada dasar lain
-- Durasi lagu, valence, danceability, dinamika, serta tempo terdistribusi normal
-
-## Data Preparation
+Sedangkan sataset user hanya akan menggunakan lagu yang terdapat dalam dataset track yang sudah disaring popularitasnya. Proses ini menyisakan 22.413 baris pada dataset user. Setelah itu dilakukan analisis terhadap data-data ini.
 
 ### Formatting
 
@@ -195,6 +200,10 @@ Dibentuk sesuai kategori tempo dalam musik [*6*] sebagai berikut:
 - 140-177 BPM: presto
 - Lebih dari 177 BPM: prestissimo
 
+#### TF-IDF (Term Frequency-Inverse Document Frequency)
+
+Setelah kolom 'content' pada dataset track terbentuk, kolom tersebut diubah ke dalam matriks numerik menggunakan metode TF-IDF (Term Frequency-Inverse Document Frequency). Metode ini mengukur seberapa penting suatu kata dalam dokumen. Dengan adanya matriks ini kesamaan antar item dalam dataset bisa dihitung untuk kemudian dibandingkan.
+
 #### ID Pengguna
 
 Sedangkan pada dataset user karena tidak ada penanda ID untuk pengguna maka akan dibuat kolom bernama 'user_id'. Proses ini dilakukan dengan mengatur 180 nomor acak pada setiap baris, lalu nomor ini diubah menjadi string dengan format 'U00' dan diikuti nomor acak tersebut. Sehingga dataset user terbagi ke dalam 180 pengguna berbeda.
@@ -222,9 +231,7 @@ Dataset user dibagi menjadi data training dan validation dengan proporsi 80:20.
 Teknik ini biasa digunakan dalam sistem *content-based filtering* yang bekerja dengan menghitung kesamaan antar item. Item akan direpresentasikan sebagai vektor, lalu untuk setiap pasang vektor akan dihitung kemiripan arah dan sudutnya. Berikut adalah rumus cosine similarity.
 ![Cosine similarity](https://raw.githubusercontent.com/nfach98/MusicRecommendation/refs/heads/main/images/cosine_sim.png)
 
-Kelebihan teknik ini adalah efektif untuk data jarang serta efisien secara sumber daya. Namun kekurangannya hanya memberikan item yang mirip tanpa mempertimbangkan seberapa pengguna menyukai item tersebut [*7*].
-
-Dalam proyek ini item berupa karakteristik lagu dalam kolom 'content' akan diukur menggunakan TF-IDF (Term Frequency-Inverse Document Frequency) yang mengukur seberapa penting suatu kata dalam dokumen. Lalu semua lagu akan dihitung kesamaannya terhadap lagu lain menggunakan cosine similarity. Semakin mirip data dalam 'content' maka semakin besar nilainya. 5 lagu dengan kemiripan tertinggi terhadap satu lagu yang ditentukan akan dipilih sebagai rekomendasi.
+Kelebihan teknik ini adalah efektif untuk data jarang serta efisien secara sumber daya. Namun kekurangannya hanya memberikan item yang mirip tanpa mempertimbangkan seberapa pengguna menyukai item tersebut [*7*]. Kesamaan antar lagu akan dihitung berdasarkan matriks TF-IDF yang telah dibuat pada proses *data preparation*. Semakin mirip data dalam 'content' maka semakin besar nilainya. 5 lagu dengan kemiripan tertinggi terhadap satu lagu yang ditentukan akan dipilih sebagai rekomendasi.
 
 Contohnya jika model diminta untuk memberikan rekomendasi berdasarkan lagu ini.
 
